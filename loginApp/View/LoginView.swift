@@ -10,7 +10,6 @@ import SwiftUI
 struct LoginView: View {
     @State var emailID: String = ""
     @State var password: String = ""
-    @State var rememberMe: Bool = false
 
     var body: some View {
         VStack {
@@ -75,7 +74,6 @@ struct LoginView: View {
             }.padding(.vertical)
 
             Button(action: {
-                print("Login with Google tapped")
             }) {
                 HStack {
                     Image("GoogleIcon") // Ícone do Google
