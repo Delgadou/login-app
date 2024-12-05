@@ -28,11 +28,15 @@ struct ForgotPassword: View {
                         .stroke(Color.gray, lineWidth: 1)
                 )
 
-            Text("At least 8 character and 1 special character")
-                .foregroundStyle(.secondary)
-                .hAlign(.leading)
-                .font(.caption)
-                .padding(.bottom)
+            HStack {
+                Image("exclamationmark.circle.fill")
+                Text("At least 8 character and 1 special character")
+                    .foregroundStyle(.secondary)
+                    .hAlign(.leading)
+                    .font(.caption)
+                    .padding(.bottom)
+            }
+
 
             Text("Repeat password").foregroundStyle(.secondary).hAlign(.leading)
 
@@ -45,11 +49,16 @@ struct ForgotPassword: View {
                         .stroke(Color.gray, lineWidth: 1)
                 )
 
-            Text("Both passwords must match")
-                .foregroundStyle(.secondary)
-                .hAlign(.leading)
-                .padding(.bottom)
-                .font(.caption)
+            HStack {
+                Image("exclamationmark.circle.fill")
+                    .foregroundStyle(.secondary)
+
+                Text("Both passwords must match")
+                    .foregroundStyle(.secondary)
+                    .hAlign(.leading)
+                    .padding(.bottom)
+                    .font(.caption)
+            }
 
             HStack {
                 Button {
