@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var emailID: String = ""
-    @State var password: String = ""
+    @Binding var showForgotPassword: Bool
+    @Binding var showSignup: Bool
+    @State private var emailID: String = ""
+    @State private var password: String = ""
+    @State private var showForgotPasswordView: Bool = false
 
     var body: some View {
         VStack {
@@ -18,29 +21,14 @@ struct LoginView: View {
                 .font(.title2)
                 .hAlign(.leading)
                 .padding(.bottom)
-            Text("Email").foregroundStyle(.secondary).hAlign(.leading)
-            TextField("", text: $emailID)
-                .textContentType(.emailAddress)
-                .autocapitalization(.none)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                )
-                .padding(.bottom)
-            Text("Password").foregroundStyle(.secondary).hAlign(.leading)
 
-            SecureField("", text: $password)
-                .textContentType(.password)
-                .autocapitalization(.none)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                ).padding(.bottom)
+            CustomTF(hint: "Email", value: $emailID)
+
+            CustomTF(hint: "Password", isPassword: true, value: $password)
+                .padding(.vertical, 15)
 
             Button {
-
+                showForgotPassword.toggle()
             } label: {
                 Text("Forgot password?")
                     .foregroundStyle(Color.gray)
@@ -59,84 +47,35 @@ struct LoginView: View {
                     .background(Color.blue)
                     .cornerRadius(10)
                     .shadow(radius: 5)
-            }.padding(.top)
+            }.disabled(emailID.isEmpty || password.isEmpty)
+                .padding(.bottom)
+
 
             HStack {
                 Text("Don't have an account?")
                     .foregroundStyle(.secondary)
                 Button {
-
+                    showSignup.toggle()
+                    //path.append(NavigationDestinations.RegisterView)
                 } label: {
                     Text("Sign up")
                         .underline()
 
                 }
-            }.padding(.vertical)
-
-            Button(action: {
-            }) {
-                HStack {
-                    Image("GoogleIcon") // Ícone do Google
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                    Text("Login with Google")
-                        .font(.headline)
-                        .foregroundColor(.black)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                )
-                .padding(.bottom)
             }
-
-            Button(
-                action: {
-
-                }
-            ) {
-                HStack {
-                    Spacer()
-                    Image("AppleIcon")
-                        .resizable()
-                        .frame(width: 20, height: 23)
-                    Text("Login with Apple")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                    Spacer()
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.black)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray.opacity(0.4), lineWidth: 1)
-                )
-            }
-
-
-        }.hAlign(.leading).vAlign(.top).padding()
-
+        }.padding()
+            .vAlign(.center)
     }
 }
 
-extension View {
-    func hAlign(_ alignment: Alignment) -> some View {
-        self
-            .frame(maxWidth: .infinity, alignment: alignment)
-    }
-
-    func vAlign(_ alignment: Alignment) -> some View {
-        self
-            .frame(maxHeight: .infinity, alignment: alignment)
-    }
+enum NavigationDestinations: String, CaseIterable, Hashable {
+    case HomeView
+    case RegisterView
+    case ForgotPasswordView
 }
 
-#Preview {
-    LoginView()
-}
+//#Preview {
+//    @Previewable @State var showSignup: Bool = false
+//
+//    //LoginView()
+//}

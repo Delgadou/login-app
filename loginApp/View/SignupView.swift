@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Signup: View {
+    @Binding var showSignup: Bool
+    @State var userName: String = ""
     @State var emailID: String = ""
     @State var password: String = ""
 
@@ -19,13 +21,16 @@ struct Signup: View {
                 .hAlign(.leading)
                 .padding(.bottom)
 
+            CustomTF(hint: "Full name", value: $userName)
+
+
             CustomTF(hint: "Email", value: $emailID)
 
             CustomTF(hint: "Password", isPassword: true, value: $password)
                 .padding(.vertical, 15)
 
             Button {
-                
+
             } label: {
                 Text("Sign up")
                     .font(.headline)
@@ -36,22 +41,25 @@ struct Signup: View {
                     .cornerRadius(10)
                     .shadow(radius: 5)
             }.padding(.top)
-            
+
             HStack {
                 Text("Already have an account?")
                     .foregroundStyle(.secondary)
                 Button {
-                    
+                    showSignup.toggle()
                 } label: {
                     Text("Log in")
                         .underline()
-                    
+
                 }
             }.padding(.vertical)
-        }.vAlign(.center).padding()
+        }
+        .vAlign(.center).padding()
+        .toolbar(.hidden, for: .navigationBar)
+        
     }
 }
 
 #Preview {
-    Signup()
+    RootView()
 }

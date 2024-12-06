@@ -7,14 +7,25 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @State var isLogged: Bool = false
+struct RootView: View {
+    @State private var showSignup: Bool = false
+    @State private var showForgotPassword: Bool = false
+    @State private var showHome: Bool = false
+
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            LoginView(showForgotPassword: $showForgotPassword, showSignup: $showSignup)
+                .navigationDestination(isPresented: $showSignup) {
+                    Signup(showSignup: $showSignup)
+                }
+                .navigationDestination(isPresented: $showForgotPassword) {
+                    ForgotPasswordView(showForgotPassword: $showForgotPassword)
+                }
+        }
     }
 }
 
 #Preview {
-    ContentView()
+    RootView()
 }

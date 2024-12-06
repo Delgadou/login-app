@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ForgotPassword: View {
+struct ForgotPasswordView: View {
+    @Binding var showForgotPassword: Bool
     @State var password: String = ""
     @State var repeatedPassword: String = ""
 
@@ -16,53 +17,19 @@ struct ForgotPassword: View {
             Text("Reset password")
                 .bold()
                 .font(.title2)
-                .hAlign(.leading)
+                .hAlign(.leading)  
+
+            CustomTF(hint: "Password", isPassword: true, value: $password)
+                .padding(.vertical, 15)
+
+
+            CustomTF(hint: "Repeat password", isPassword: true, value: $repeatedPassword)
+                .padding(.vertical, 15)
                 .padding(.bottom)
-            Text("Password").foregroundStyle(.secondary).hAlign(.leading)
-            SecureField("", text: $password)
-                .textContentType(.password)
-                .autocapitalization(.none)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                )
-
-            HStack {
-                Image("exclamationmark.circle.fill")
-                Text("At least 8 character and 1 special character")
-                    .foregroundStyle(.secondary)
-                    .hAlign(.leading)
-                    .font(.caption)
-                    .padding(.bottom)
-            }
-
-
-            Text("Repeat password").foregroundStyle(.secondary).hAlign(.leading)
-
-            SecureField("", text: $repeatedPassword)
-                .textContentType(.password)
-                .autocapitalization(.none)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray, lineWidth: 1)
-                )
-
-            HStack {
-                Image("exclamationmark.circle.fill")
-                    .foregroundStyle(.secondary)
-
-                Text("Both passwords must match")
-                    .foregroundStyle(.secondary)
-                    .hAlign(.leading)
-                    .padding(.bottom)
-                    .font(.caption)
-            }
 
             HStack {
                 Button {
-
+                    showForgotPassword.toggle()
                 } label: {
                     Text("Cancel")
                         .font(.headline)
@@ -91,13 +58,11 @@ struct ForgotPassword: View {
                         .cornerRadius(10)
                         .shadow(radius: 5)
                 }
-
-            }.padding(.top)
-
-        }.hAlign(.leading).vAlign(.top).padding()
+            }
+        }.vAlign(.center).padding()
     }
 }
 
 #Preview {
-    ForgotPassword()
+    RootView()
 }
