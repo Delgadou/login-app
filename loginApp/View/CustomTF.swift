@@ -21,6 +21,7 @@ struct CustomTF: View {
                     Group {
                         if showPassword {
                             TextField(hint, text: $value)
+                                .autocapitalization(.none)
                                 .padding(.all, 10)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
@@ -28,6 +29,7 @@ struct CustomTF: View {
                                 )
                         } else {
                             SecureField(hint, text: $value)
+                                .autocapitalization(.none)
                                 .padding(.all, 10)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)

@@ -22,9 +22,10 @@ struct Signup: View {
                 .padding(.bottom)
 
             CustomTF(hint: "Full name", value: $userName)
-
+                .padding(.bottom)
 
             CustomTF(hint: "Email", value: $emailID)
+
 
             CustomTF(hint: "Password", isPassword: true, value: $password)
                 .padding(.vertical, 15)
@@ -54,9 +55,7 @@ struct Signup: View {
                 }
             }.padding(.vertical)
         }
-        .vAlign(.center).padding()
-        .toolbar(.hidden, for: .navigationBar)
-        
+        .vAlign(.center).padding()        
     }
 }
 

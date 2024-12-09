@@ -20,7 +20,7 @@ struct ForgotPasswordView: View {
                 .hAlign(.leading)  
 
             CustomTF(hint: "Password", isPassword: true, value: $password)
-                .padding(.vertical, 15)
+                .padding(.top)
 
 
             CustomTF(hint: "Repeat password", isPassword: true, value: $repeatedPassword)
@@ -59,10 +59,12 @@ struct ForgotPasswordView: View {
                         .shadow(radius: 5)
                 }
             }
-        }.vAlign(.center).padding()
-    }
+        }.padding()
+     }
 }
 
 #Preview {
     RootView()
+        .environmentObject(Router.shared)
+
 }
