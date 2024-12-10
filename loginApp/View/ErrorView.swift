@@ -30,5 +30,7 @@ struct ErrorView: View {
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
         ErrorView(error: "Lorem ipsum lorem ipsum psum lorem ipsum psum lorem ipsum loren")
+            .environmentObject(Router.shared)
+
     }
 }

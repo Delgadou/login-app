@@ -14,6 +14,8 @@ struct RootView: View {
     @State private var showForgotPassword: Bool = false
     @State private var showHome: Bool = false
 
+    @StateObject private var viewModel = LoginModel()
+
 
     var body: some View {
         NavigationStack {
@@ -21,12 +23,12 @@ struct RootView: View {
             case .tabManager:
                 HomeView()
             case .onLogin:
-                LoginView(showForgotPassword: $showForgotPassword, showSignup: $showSignup)
+                LoginView(showForgotPassword: $showForgotPassword, showSignup: $showSignup, viewModel: viewModel)
                     .navigationDestination(isPresented: $showSignup) {
                         Signup(showSignup: $showSignup)
                     }
                     .navigationDestination(isPresented: $showForgotPassword) {
-                        ForgotPasswordView(showForgotPassword: $showForgotPassword)
+                        ForgotPasswordView(showForgotPassword: $showForgotPassword, viewModel: $viewModel)
                     }
             case .error(let message):
                 ErrorView(error: message)
@@ -37,4 +39,6 @@ struct RootView: View {
 
 #Preview {
     RootView()
+        .environmentObject(Router.shared)
+
 }

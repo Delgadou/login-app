@@ -21,7 +21,7 @@ struct Signup: View {
                 .hAlign(.leading)
                 .padding(.bottom)
 
-            CustomTF(hint: "Full name", value: $userName)
+            CustomTF(hint: "Name", value: $userName)
                 .padding(.bottom)
 
             CustomTF(hint: "Email", value: $emailID)
@@ -31,7 +31,7 @@ struct Signup: View {
                 .padding(.vertical, 15)
 
             Button {
-
+                
             } label: {
                 Text("Sign up")
                     .font(.headline)
@@ -61,4 +61,6 @@ struct Signup: View {
 
 #Preview {
     RootView()
+        .environmentObject(Router.shared)
+
 }

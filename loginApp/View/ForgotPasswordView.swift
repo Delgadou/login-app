@@ -11,56 +11,41 @@ struct ForgotPasswordView: View {
     @Binding var showForgotPassword: Bool
     @State var password: String = ""
     @State var repeatedPassword: String = ""
+    @State private var emailID: String = ""
+    @Binding var viewModel: LoginModel
+
 
     var body: some View {
         VStack {
             Text("Reset password")
                 .bold()
                 .font(.title2)
-                .hAlign(.leading)  
+                .hAlign(.leading)
 
-            CustomTF(hint: "Password", isPassword: true, value: $password)
-                .padding(.top)
+            CustomTF(hint: "Email", value: $emailID)
+
+            CustomTF(hint: "New password", isPassword: true, value: $password)
+                .padding(.vertical)
 
 
-            CustomTF(hint: "Repeat password", isPassword: true, value: $repeatedPassword)
-                .padding(.vertical, 15)
+            CustomTF(hint: "Confirm new password", isPassword: true, value: $repeatedPassword)
                 .padding(.bottom)
 
-            HStack {
-                Button {
-                    showForgotPassword.toggle()
-                } label: {
-                    Text("Cancel")
-                        .font(.headline)
-                        .foregroundColor(.black)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 60)
-                        .background(
-                            RoundedRectangle(
-                                cornerRadius: 10
-                            )
-                            .stroke(.gray, lineWidth: 1)
-                        )
-                }.padding(.trailing)
-
-                Button {
-
-                } label: {
-                    Text("Reset")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 60)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                }
+            Button {
+                viewModel.resetPassword(email: emailID, newPassword: password)
+            } label: {
+                Text("Reset")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
             }
         }.padding()
-     }
+    }
 }
 
 #Preview {
