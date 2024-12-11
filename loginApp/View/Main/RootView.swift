@@ -10,12 +10,7 @@ import SwiftUI
 struct RootView: View {
     @EnvironmentObject var router: Router
 
-    @State private var showSignup: Bool = false
-    @State private var showForgotPassword: Bool = false
-    @State private var showHome: Bool = false
-
-    @StateObject private var viewModel = LoginModel()
-
+    @State var showSignup: Bool = false
 
     var body: some View {
         NavigationStack {
@@ -23,12 +18,9 @@ struct RootView: View {
             case .tabManager:
                 HomeView()
             case .onLogin:
-                LoginView(showForgotPassword: $showForgotPassword, showSignup: $showSignup, viewModel: viewModel)
+                LoginView()
                     .navigationDestination(isPresented: $showSignup) {
-                        Signup(showSignup: $showSignup)
-                    }
-                    .navigationDestination(isPresented: $showForgotPassword) {
-                        ForgotPasswordView(showForgotPassword: $showForgotPassword, viewModel: $viewModel)
+                        ForgotPasswordView()
                     }
             case .error(let message):
                 ErrorView(error: message)

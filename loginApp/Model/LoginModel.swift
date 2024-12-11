@@ -7,53 +7,26 @@
 
 import SwiftUI
 
-class LoginModel: ObservableObject {
-    @Published var userData: [User] = [
-        User(name: "Henrique", email: "henrique@delgado.com", password: "123456"),
-        User(name: "Thomas", email: "thomas@delgado.com", password: "123456"),
-        User(name: "Guilherme", email: "guilherme@delgado.com", password: "123456")
-    ]
-    @Published var isLoggedIn: Bool = false
-    @Published var loginAttempts: Int = 0
-    @Published var maxLoginAttempts: Int = 5
+@Observable
+class LoginModel {
+    var isLoggedIn: Bool = false
+    
+    var loginAttempts: Int = 0
+    var maxLoginAttempts: Int = 5
 
     func login(email: String, password: String) {
         loginAttempts += 1
-        for user in userData {
-            if email == user.email && password == user.password{
-                isLoggedIn = true
-            } else {
-                exceedsMaxLoginAttempts()
-            }
-        }
-    }
-
-    func logout() {
-        isLoggedIn = false
-    }
-
-    func resetPassword(email: String, newPassword: String) {
-        for user in userData {
-            if(email == user.email) {
-                userData[0].password = newPassword
-            }
-        }
-    }
-
-    func createAccount(email: String, name: String, password: String) {
-        userData.append(User(name: name, email: email, password: password))
+        //Aumenta contagem de tentativa e logo em seguida faz requisição de LOGIN
+        //IF Successful loginAttempts = 0.
     }
 
     func exceedsMaxLoginAttempts() {
         if(loginAttempts == maxLoginAttempts) {
-            //Bloqueia login
+            //Quando a contagem de tentativas for a mesma que o limite imposto o login será bloqueado por um tempo.
         }
     }
-}
 
-struct User: Identifiable {
-    let id: UUID = UUID()
-    var name: String
-    var email: String
-    var password: String
+    func navigateToForgotPassword() {
+        
+    }
 }

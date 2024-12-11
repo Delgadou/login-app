@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct Signup: View {
-    @Binding var showSignup: Bool
     @State var userName: String = ""
     @State var emailID: String = ""
     @State var password: String = ""
@@ -47,7 +46,7 @@ struct Signup: View {
                 Text("Already have an account?")
                     .foregroundStyle(.secondary)
                 Button {
-                    showSignup.toggle()
+
                 } label: {
                     Text("Log in")
                         .underline()

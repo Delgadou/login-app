@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension View {
+
     @ViewBuilder
     func hAlign(_ alignment: Alignment) -> some View {
         self

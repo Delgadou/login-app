@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct ForgotPasswordView: View {
-    @Binding var showForgotPassword: Bool
     @State var password: String = ""
     @State var repeatedPassword: String = ""
     @State private var emailID: String = ""
-    @Binding var viewModel: LoginModel
 
 
     var body: some View {
@@ -32,7 +30,7 @@ struct ForgotPasswordView: View {
                 .padding(.bottom)
 
             Button {
-                viewModel.resetPassword(email: emailID, newPassword: password)
+
             } label: {
                 Text("Reset")
                     .font(.headline)

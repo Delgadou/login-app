@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(LoginModel.self) private var loginModel
     @EnvironmentObject var router: Router
-    @Binding var showForgotPassword: Bool
-    @Binding var showSignup: Bool
     @State var showAlert: Bool = false
-    @Binding var viewModel: LoginModel
     @State var email: String = ""
     @State var password: String = ""
 
@@ -30,7 +28,7 @@ struct LoginView: View {
                 .padding(.vertical, 15)
 
             Button {
-                showForgotPassword.toggle()
+
             } label: {
                 Text("Forgot password?")
                     .foregroundStyle(Color.gray)
@@ -39,12 +37,7 @@ struct LoginView: View {
             }.padding(.bottom)
 
             Button {
-                viewModel.login(email: email, password: password)
-                if(viewModel.isLoggedIn) {
-                    router.currentView = .tabManager
-                } else {
-                    showAlert.toggle()
-                }
+                loginModel.login(email: email, password: password)
             } label: {
                 Text("Login")
                     .font(.headline)
@@ -66,7 +59,7 @@ struct LoginView: View {
                 Text("Don't have an account?")
                     .foregroundStyle(.secondary)
                 Button {
-                    showSignup.toggle()
+
                 } label: {
                     Text("Sign up")
                         .underline()
@@ -74,6 +67,9 @@ struct LoginView: View {
             }
         }.padding()
             .vAlign(.center)
+            .navigationDestination(isPresented: loginModel.$isLoggedIn) {
+                HomeView()
+            }
     }
 }
 
