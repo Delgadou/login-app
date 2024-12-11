@@ -7,10 +7,8 @@
 
 import SwiftUI
 
-struct Signup: View {
-    @State var userName: String = ""
-    @State var emailID: String = ""
-    @State var password: String = ""
+struct SignupView: View {
+    @State var signUpModel = SignupModel()
 
     var body: some View {
         VStack {
@@ -20,27 +18,38 @@ struct Signup: View {
                 .hAlign(.leading)
                 .padding(.bottom)
 
-            CustomTF(hint: "Name", value: $userName)
+            CustomTF(hint: "Name", value: $signUpModel.name)
                 .padding(.bottom)
 
-            CustomTF(hint: "Email", value: $emailID)
+            CustomTF(hint: "Email", value: $signUpModel.email)
 
 
-            CustomTF(hint: "Password", isPassword: true, value: $password)
+            CustomTF(hint: "Password", isPassword: true, value: $signUpModel.password)
                 .padding(.vertical, 15)
 
-            Button {
-                
-            } label: {
-                Text("Sign up")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                    .shadow(radius: 5)
-            }.padding(.top)
+            //            Button {
+//
+//            } label: {
+//                Text("Sign up")
+//                    .font(.headline)
+//                    .foregroundColor(.white)
+//                    .padding()
+//                    .frame(maxWidth: .infinity)
+//                    .background(Color.blue)
+//                    .cornerRadius(10)
+//                    .shadow(radius: 5)
+//            }.padding(.top)
+
+            NavigationLink("Sign up", value: LoginDestination.LoginView)
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+                .padding(.top)
+
 
             HStack {
                 Text("Already have an account?")

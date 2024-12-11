@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @Environment(LoginModel.self) private var loginModel
-    @EnvironmentObject var router: Router
-    @State var showAlert: Bool = false
-    @State var email: String = ""
-    @State var password: String = ""
+    @State var loginModel = LoginModel()
 
     var body: some View {
         VStack {
@@ -22,61 +18,84 @@ struct LoginView: View {
                 .hAlign(.leading)
                 .padding(.bottom)
 
-            CustomTF(hint: "Email", value: $email)
+            CustomTF(hint: "Email", value: $loginModel.email)
 
-            CustomTF(hint: "Password", isPassword: true, value: $password)
+            CustomTF(hint: "Password", isPassword: true, value: $loginModel.password)
                 .padding(.vertical, 15)
 
-            Button {
+            NavigationLink("Forgot password?", value: LoginDestination.ForgotPasswordView)
+                .foregroundStyle(Color.gray)
+                .hAlign(.trailing)
+                .padding(.bottom)
 
-            } label: {
-                Text("Forgot password?")
-                    .foregroundStyle(Color.gray)
-                    .underline()
-                    .hAlign(.trailing)
-            }.padding(.bottom)
+//            Button {
+//
+//            } label: {
+//                Text("Forgot password?")
+//                    .foregroundStyle(Color.gray)
+//                    .underline()
+//                    .hAlign(.trailing)
+//            }.padding(.bottom)
+
+            NavigationLink("Login", value: LoginDestination.HomeView)
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(10)
+                .shadow(radius: 5)
+                .padding(.bottom)
 
             Button {
-                loginModel.login(email: email, password: password)
+                //loginModel.login(email: loginModel.email, password: loginModel.password)
             } label: {
                 Text("Login")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                    .shadow(radius: 5)
-            }.padding(.bottom)
-                .alert("Senha incorreta", isPresented: $showAlert){
 
-                }
-            message: {
-                Text("Tenta novamente")
-            }
+            }.padding(.bottom)
+//
+//                            .alert("Senha incorreta", isPresented: $loginModel.isLoggedIn){
+//            
+//                            }
+//                        message: {
+//                            Text("Tenta novamente")
+//                        }
 
             HStack {
                 Text("Don't have an account?")
                     .foregroundStyle(.secondary)
-                Button {
 
-                } label: {
-                    Text("Sign up")
-                        .underline()
-                }
+                NavigationLink("Sign up", value: LoginDestination.SignupView)
+
+//                Button {
+//
+//                } label: {
+//                    Text("Sign up")
+//                        .underline()
+//                }
             }
         }.padding()
             .vAlign(.center)
-            .navigationDestination(isPresented: loginModel.$isLoggedIn) {
-                HomeView()
+            .navigationDestination(for: LoginDestination.self) { destination in
+                switch destination {
+                case .HomeView: HomeView()
+                case .SignupView: SignupView()
+                case .ForgotPasswordView: ForgotPasswordView()
+                case .LoginView:
+                    LoginView().self
+                }
             }
-    }
-}
 
-enum NavigationDestinations: String, CaseIterable, Hashable {
-    case HomeView
-    case RegisterView
-    case ForgotPasswordView
+        //            .navigationDestination(isPresented: $loginModel.isLoggedIn) {
+        //                HomeView()
+        //            }
+        //            .navigationDestination(isPresented: $loginModel.isLoggedIn) {
+        //                SignupView()
+        //            }
+        //            .navigationDestination(isPresented: $loginModel.isLoggedIn) {
+        //                ForgotPasswordView()
+        //            }
+    }
 }
 
 #Preview {

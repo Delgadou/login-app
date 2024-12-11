@@ -19,9 +19,6 @@ struct RootView: View {
                 HomeView()
             case .onLogin:
                 LoginView()
-                    .navigationDestination(isPresented: $showSignup) {
-                        ForgotPasswordView()
-                    }
             case .error(let message):
                 ErrorView(error: message)
             }

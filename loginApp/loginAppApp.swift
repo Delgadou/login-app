@@ -16,7 +16,6 @@ struct loginAppApp: App {
         WindowGroup {
             RootView()
                 .environmentObject(router)
-                .environmentObject(loginModel)
         }
     }
 }

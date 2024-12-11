@@ -13,6 +13,7 @@ class SignupModel {
     var email: String = ""
     var password: String = ""
 
+
     func registerAccount() {
         //Cria conta
     }

@@ -9,20 +9,23 @@ import SwiftUI
 
 @Observable
 class LoginModel {
-    var isLoggedIn: Bool = false
-    
+    var showAlert: Bool = false
+    var email: String = ""
+    var password: String = ""
+    var destination: LoginDestination = .LoginView
+
     var loginAttempts: Int = 0
     var maxLoginAttempts: Int = 5
 
     func login(email: String, password: String) {
+
+        destination = .HomeView
         loginAttempts += 1
-        //Aumenta contagem de tentativa e logo em seguida faz requisição de LOGIN
-        //IF Successful loginAttempts = 0.
+
     }
 
     func exceedsMaxLoginAttempts() {
         if(loginAttempts == maxLoginAttempts) {
-            //Quando a contagem de tentativas for a mesma que o limite imposto o login será bloqueado por um tempo.
         }
     }
 
@@ -30,3 +33,41 @@ class LoginModel {
         
     }
 }
+
+//enum LoginDestination: CaseIterable, Hashable {
+//    case HomeView
+//    case SignupView
+//    case ForgotPasswordView
+//
+//    @ViewBuilder var body: some View {
+//        switch self {
+//        case .HomeView:
+//            HomeView()
+//        case .SignupView:
+//            SignupView()
+//        case .ForgotPasswordView:
+//            ForgotPasswordView()
+//        }
+//    }
+//}
+
+enum LoginDestination: String, Hashable {
+    case LoginView
+    case HomeView
+    case SignupView
+    case ForgotPasswordView
+}
+
+//enum LoginDestination: Hashable, View {
+//    case HomeView
+//    case RegisterView
+//    case ForgotPasswordView
+//
+//    var body: some View {
+//        switch self {
+//        case .HomeView: LoginDestination.HomeView
+//        case .RegisterView: LoginDestination.RegisterView
+//        case .ForgotPasswordView: LoginDestination.ForgotPasswordView
+//        }
+//    }
+//}
