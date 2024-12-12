@@ -27,28 +27,18 @@ struct SignupView: View {
             CustomTF(hint: "Password", isPassword: true, value: $signUpModel.password)
                 .padding(.vertical, 15)
 
-            //            Button {
-//
-//            } label: {
-//                Text("Sign up")
-//                    .font(.headline)
-//                    .foregroundColor(.white)
-//                    .padding()
-//                    .frame(maxWidth: .infinity)
-//                    .background(Color.blue)
-//                    .cornerRadius(10)
-//                    .shadow(radius: 5)
-//            }.padding(.top)
+            Button {
 
-            NavigationLink("Sign up", value: LoginDestination.LoginView)
-                .font(.headline)
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(10)
-                .shadow(radius: 5)
-                .padding(.top)
+            } label: {
+                Text("Sign up")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+            }.padding(.top)
 
 
             HStack {
@@ -63,12 +53,11 @@ struct SignupView: View {
                 }
             }.padding(.vertical)
         }
-        .vAlign(.center).padding()        
+        .vAlign(.center).padding()
     }
 }
 
 #Preview {
     RootView()
         .environmentObject(Router.shared)
-
 }

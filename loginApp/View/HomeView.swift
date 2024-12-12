@@ -14,7 +14,7 @@ struct HomeView: View {
         Text("Welcome to Monte Cristo Studio")
         Button {
             withAnimation {
-                router.currentView = .onLogin
+                
             }
         } label: {
             Text("Log out")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUINavigation
 
 struct LoginView: View {
     @State var loginModel = LoginModel()
@@ -23,78 +24,57 @@ struct LoginView: View {
             CustomTF(hint: "Password", isPassword: true, value: $loginModel.password)
                 .padding(.vertical, 15)
 
-            NavigationLink("Forgot password?", value: LoginDestination.ForgotPasswordView)
-                .foregroundStyle(Color.gray)
-                .hAlign(.trailing)
-                .padding(.bottom)
-
-//            Button {
-//
-//            } label: {
-//                Text("Forgot password?")
-//                    .foregroundStyle(Color.gray)
-//                    .underline()
-//                    .hAlign(.trailing)
-//            }.padding(.bottom)
-
-            NavigationLink("Login", value: LoginDestination.HomeView)
-                .font(.headline)
-                .foregroundColor(.white)
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(10)
-                .shadow(radius: 5)
-                .padding(.bottom)
+            Button {
+                loginModel.forgotPasswordButtonPressed()
+            } label: {
+                Text("Forgot password?")
+                    .foregroundStyle(Color.gray)
+                    .underline()
+                    .hAlign(.trailing)
+            }.padding(.bottom)
 
             Button {
-                //loginModel.login(email: loginModel.email, password: loginModel.password)
+                loginModel.loginButtonPressed(email: loginModel.email, password: loginModel.password)
             } label: {
                 Text("Login")
-
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
             }.padding(.bottom)
+
+
+//            .alert("Senha incorreta", isPresented: $loginModel.isLoggedIn){
 //
-//                            .alert("Senha incorreta", isPresented: $loginModel.isLoggedIn){
-//            
-//                            }
-//                        message: {
-//                            Text("Tenta novamente")
-//                        }
+//            }
+//            message: {
+//                Text("Tenta novamente")
+//            }
 
             HStack {
                 Text("Don't have an account?")
                     .foregroundStyle(.secondary)
-
-                NavigationLink("Sign up", value: LoginDestination.SignupView)
-
-//                Button {
-//
-//                } label: {
-//                    Text("Sign up")
-//                        .underline()
-//                }
+                Button {
+                    loginModel.signupButtonPressed()
+                } label: {
+                    Text("Sign up")
+                        .underline()
+                }
             }
         }.padding()
             .vAlign(.center)
-            .navigationDestination(for: LoginDestination.self) { destination in
-                switch destination {
-                case .HomeView: HomeView()
-                case .SignupView: SignupView()
-                case .ForgotPasswordView: ForgotPasswordView()
-                case .LoginView:
-                    LoginView().self
-                }
+            .navigationDestination(item: $loginModel.destination.HomeView) {
+                HomeView()
             }
-
-        //            .navigationDestination(isPresented: $loginModel.isLoggedIn) {
-        //                HomeView()
-        //            }
-        //            .navigationDestination(isPresented: $loginModel.isLoggedIn) {
-        //                SignupView()
-        //            }
-        //            .navigationDestination(isPresented: $loginModel.isLoggedIn) {
-        //                ForgotPasswordView()
-        //            }
+            .navigationDestination(item: $loginModel.destination.ForgotPasswordView) {
+                ForgotPasswordView()
+            }
+            .navigationDestination(item: $loginModel.destination.SignupView) {
+                SignupView()
+            }
     }
 }
 
