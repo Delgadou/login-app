@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		97CFD5282D0B1BB900849C03 /* AppKitNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 97CFD5272D0B1BB900849C03 /* AppKitNavigation */; };
+		97CFD52A2D0B1BB900849C03 /* SwiftNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 97CFD5292D0B1BB900849C03 /* SwiftNavigation */; };
+		97CFD52C2D0B1BB900849C03 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 97CFD52B2D0B1BB900849C03 /* SwiftUINavigation */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		97E57E022D01D35A0070D238 /* loginApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = loginApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,16 +29,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97CFD52A2D0B1BB900849C03 /* SwiftNavigation in Frameworks */,
+				97CFD5282D0B1BB900849C03 /* AppKitNavigation in Frameworks */,
+				97CFD52C2D0B1BB900849C03 /* SwiftUINavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		97CFD52D2D0B1CD900849C03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		97E57DF92D01D35A0070D238 = {
 			isa = PBXGroup;
 			children = (
 				97E57E042D01D35A0070D238 /* loginApp */,
+				97CFD52D2D0B1CD900849C03 /* Frameworks */,
 				97E57E032D01D35A0070D238 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +82,9 @@
 			);
 			name = loginApp;
 			packageProductDependencies = (
+				97CFD5272D0B1BB900849C03 /* AppKitNavigation */,
+				97CFD5292D0B1BB900849C03 /* SwiftNavigation */,
+				97CFD52B2D0B1BB900849C03 /* SwiftUINavigation */,
 			);
 			productName = loginApp;
 			productReference = 97E57E022D01D35A0070D238 /* loginApp.app */;
@@ -94,6 +114,9 @@
 			);
 			mainGroup = 97E57DF92D01D35A0070D238;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				97CFD5262D0B1BB900849C03 /* XCRemoteSwiftPackageReference "swift-navigation" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 97E57E032D01D35A0070D238 /* Products */;
 			projectDirPath = "";
@@ -339,6 +362,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97CFD5262D0B1BB900849C03 /* XCRemoteSwiftPackageReference "swift-navigation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-navigation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97CFD5272D0B1BB900849C03 /* AppKitNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97CFD5262D0B1BB900849C03 /* XCRemoteSwiftPackageReference "swift-navigation" */;
+			productName = AppKitNavigation;
+		};
+		97CFD5292D0B1BB900849C03 /* SwiftNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97CFD5262D0B1BB900849C03 /* XCRemoteSwiftPackageReference "swift-navigation" */;
+			productName = SwiftNavigation;
+		};
+		97CFD52B2D0B1BB900849C03 /* SwiftUINavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97CFD5262D0B1BB900849C03 /* XCRemoteSwiftPackageReference "swift-navigation" */;
+			productName = SwiftUINavigation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 97E57DFA2D01D35A0070D238 /* Project object */;
 }
