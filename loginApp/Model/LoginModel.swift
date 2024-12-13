@@ -11,11 +11,18 @@ import SwiftUINavigation
 
 @Observable
 class LoginModel {
+
+    @CasePathable
+    enum Destination {
+        case HomeView
+        case SignupView
+        case ForgotPasswordView
+    }
+
     var showAlert: Bool = false
     var email: String = ""
     var password: String = ""
-    var destination: LoginDestination?
-
+    var destination: Destination?
     var loginAttempts: Int = 0
     var maxLoginAttempts: Int = 5
 
@@ -37,11 +44,4 @@ class LoginModel {
     func signupButtonPressed() {
         destination = .SignupView
     }
-}
-
-@CasePathable
-enum LoginDestination {
-    case HomeView
-    case SignupView
-    case ForgotPasswordView
 }

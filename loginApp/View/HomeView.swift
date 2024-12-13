@@ -8,14 +8,12 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var router: Router
+    @State var homeModel = HomeModel()
 
     var body: some View {
         Text("Welcome to Monte Cristo Studio")
         Button {
-            withAnimation {
-                
-            }
+            
         } label: {
             Text("Log out")
         }

@@ -6,7 +6,17 @@
 //
 
 import SwiftUI
+import SwiftUINavigation
 
-class HomeModel: ObservableObject {
-    
+@Observable
+class HomeModel {
+    var destination: HomeDestination = .HomeView
+
+}
+
+@CasePathable
+enum HomeDestination {
+    case HomeView
+    case LoginView
+    case SettingsView
 }

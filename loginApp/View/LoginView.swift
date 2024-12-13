@@ -46,14 +46,6 @@ struct LoginView: View {
                     .shadow(radius: 5)
             }.padding(.bottom)
 
-
-//            .alert("Senha incorreta", isPresented: $loginModel.isLoggedIn){
-//
-//            }
-//            message: {
-//                Text("Tenta novamente")
-//            }
-
             HStack {
                 Text("Don't have an account?")
                     .foregroundStyle(.secondary)

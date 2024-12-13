@@ -23,7 +23,6 @@ struct SignupView: View {
 
             CustomTF(hint: "Email", value: $signUpModel.email)
 
-
             CustomTF(hint: "Password", isPassword: true, value: $signUpModel.password)
                 .padding(.vertical, 15)
 
@@ -39,7 +38,6 @@ struct SignupView: View {
                     .cornerRadius(10)
                     .shadow(radius: 5)
             }.padding(.top)
-
 
             HStack {
                 Text("Already have an account?")
