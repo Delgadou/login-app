@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignupView: View {
     @State var signUpModel = SignupModel()
+    @Binding var destination: LoginModel.Destination?
 
     var body: some View {
         VStack {
@@ -27,7 +28,7 @@ struct SignupView: View {
                 .padding(.vertical, 15)
 
             Button {
-
+                
             } label: {
                 Text("Sign up")
                     .font(.headline)
@@ -43,11 +44,10 @@ struct SignupView: View {
                 Text("Already have an account?")
                     .foregroundStyle(.secondary)
                 Button {
-
+                    destination = nil
                 } label: {
                     Text("Log in")
                         .underline()
-
                 }
             }.padding(.vertical)
         }

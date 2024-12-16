@@ -14,14 +14,7 @@ struct RootView: View {
 
     var body: some View {
         NavigationStack {
-            switch router.currentView {
-            case .tabManager:
-                HomeView()
-            case .onLogin:
-                LoginView()
-            case .error(let message):
-                ErrorView(error: message)
-            }
+            LoginView()
         }
     }
 }
