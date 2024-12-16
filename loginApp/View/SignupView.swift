@@ -44,7 +44,7 @@ struct SignupView: View {
                 Text("Already have an account?")
                     .foregroundStyle(.secondary)
                 Button {
-                    destination = nil
+                    signUpModel.loginButtonPressed(loginDestination: $destination)
                 } label: {
                     Text("Log in")
                         .underline()

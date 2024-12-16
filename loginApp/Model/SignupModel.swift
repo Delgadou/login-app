@@ -23,7 +23,7 @@ class SignupModel {
 //        return false
 //    }
 
-    func loginButtonPressed() {
-
+    func loginButtonPressed(loginDestination: Binding<LoginModel.Destination?>) {
+        loginDestination.wrappedValue = nil
     }
 }

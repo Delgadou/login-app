@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct ForgotPasswordView: View {
+    @State var forgotPasswordModel = ForgotPasswordModel()
+
     @Binding var loginNavigation: LoginModel.Destination?
     @Binding var email: String
     @Binding var loginPassword: String
-
-    @State var password: String = ""
-    @State var repeatedPassword: String = ""
-    @State var emailID: String = ""
-    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
@@ -24,18 +21,16 @@ struct ForgotPasswordView: View {
                 .font(.title2)
                 .hAlign(.leading)
 
-            CustomTF(hint: "Email", value: $emailID)
+            CustomTF(hint: "Email", value: $forgotPasswordModel.email)
 
-            CustomTF(hint: "New password", isPassword: true, value: $password)
+            CustomTF(hint: "New password", isPassword: true, value: $forgotPasswordModel.password)
                 .padding(.vertical)
 
-            CustomTF(hint: "Confirm new password", isPassword: true, value: $repeatedPassword)
+            CustomTF(hint: "Confirm new password", isPassword: true, value: $forgotPasswordModel.confirmPassword)
                 .padding(.bottom)
 
             Button {
-                email = emailID
-                loginPassword = password
-                loginNavigation = nil
+                forgotPasswordModel.resetPasswordButtonPressed(loginEmail: $email, loginPassword: $loginPassword, loginDestination: $loginNavigation)
             } label: {
                 Text("Reset")
                     .font(.headline)

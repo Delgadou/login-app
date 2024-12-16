@@ -7,12 +7,15 @@
 
 import SwiftUI
 
-class ForgotPasswordModel: ObservableObject {
-    @Published var email: String = ""
-    @Published var password: String = ""
-    @Published var confirmPassword: String = ""
+@Observable
+class ForgotPasswordModel {
+    var email: String = ""
+    var password: String = ""
+    var confirmPassword: String = ""
 
-    func resetPassword() {
-        //Reseta o password
+    func resetPasswordButtonPressed(loginEmail: Binding<String>, loginPassword: Binding<String>, loginDestination: Binding<LoginModel.Destination?>) {
+        loginEmail.wrappedValue = email
+        loginPassword.wrappedValue = password
+        loginDestination.wrappedValue = nil
     }
 }
